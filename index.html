@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rose Day — For Deepu ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Italiana&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rose-primary: #D4145A;
+            --rose-deep: #8B0036;
+            --rose-light: #FFE8F0;
+            --rose-accent: #FF6B9D;
+            --cream: #FFF8F0;
+            --gold: #D4AF37;
+            --text-dark: #2C1810;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: var(--cream);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Elegant background pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(212, 20, 90, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 107, 157, 0.04) 0%, transparent 50%),
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 60px,
+                    rgba(212, 175, 55, 0.01) 60px,
+                    rgba(212, 175, 55, 0.01) 61px
+                );
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Floating petals */
+        .petal {
+            position: fixed;
+            width: 15px;
+            height: 15px;
+            background: linear-gradient(135deg, var(--rose-accent), var(--rose-primary));
+            border-radius: 50% 0 50% 0;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 100;
+            animation: petalFall linear infinite;
+        }
+
+        @keyframes petalFall {
+            0% {
+                opacity: 0;
+                transform: translateY(-100px) rotate(0deg);
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(720deg);
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 60px 20px;
+        }
+
+        .hero-ornament {
+            width: 120px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 0 auto 40px;
+            animation: fadeInScale 1.5s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scaleX(0);
+            }
+            to {
+                opacity: 1;
+                transform: scaleX(1);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Italiana', serif;
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            color: var(--rose-primary);
+            margin-bottom: 20px;
+            line-height: 1.1;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 300;
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 60px;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Rose illustration - elegant SVG-style */
+        .rose-display {
+            position: relative;
+            margin: 60px 0;
+            animation: fadeInUp 1.2s ease-out 0.9s both;
+        }
+
+        .rose-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .rose-item {
+            position: relative;
+            aspect-ratio: 1;
+            cursor: pointer;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .rose-item:hover {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .rose-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 10px 30px rgba(212, 20, 90, 0.2));
+            transition: filter 0.4s ease;
+        }
+
+        .rose-item:hover .rose-svg {
+            filter: drop-shadow(0 15px 40px rgba(212, 20, 90, 0.4));
+        }
+
+        /* Letter Section */
+        .letter-section {
+            background: white;
+            border: 2px solid var(--rose-light);
+            border-radius: 4px;
+            max-width: 800px;
+            margin: 100px auto;
+            padding: 80px 60px;
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.08),
+                0 0 0 1px rgba(212, 20, 90, 0.05);
+            position: relative;
+            animation: fadeInUp 1s ease-out 1.2s both;
+        }
+
+        .letter-section::before {
+            content: '❦';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            color: var(--rose-primary);
+            background: white;
+            padding: 0 20px;
+        }
+
+        .letter-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 400;
+            color: var(--rose-deep);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .letter-content {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            line-height: 2;
+            color: var(--text-dark);
+            letter-spacing: 0.02em;
+        }
+
+        .letter-content p {
+            margin-bottom: 30px;
+            text-align: justify;
+            text-indent: 2em;
+        }
+
+        .letter-content p:first-child {
+            text-indent: 0;
+        }
+
+        .letter-content p:first-child::first-letter {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            float: left;
+            line-height: 0.8;
+            margin: 10px 10px 0 0;
+            color: var(--rose-primary);
+        }
+
+        .signature-block {
+            margin-top: 60px;
+            text-align: right;
+            font-style: italic;
+        }
+
+        .signature-line {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .signature-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--rose-primary);
+            font-style: normal;
+        }
+
+        /* Interactive surprise button */
+        .surprise-section {
+            text-align: center;
+            margin: 100px 0;
+            animation: fadeInUp 1s ease-out 1.5s both;
+        }
+
+        .surprise-btn {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            padding: 20px 50px;
+            background: linear-gradient(135deg, var(--rose-primary), var(--rose-deep));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 10px 40px rgba(212, 20, 90, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .surprise-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .surprise-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .surprise-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 50px rgba(212, 20, 90, 0.5);
+        }
+
+        .surprise-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 24, 16, 0.95);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: modalFadeIn 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #fff, var(--rose-light));
+            max-width: 600px;
+            width: 90%;
+            padding: 60px 40px;
+            border-radius: 8px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+            animation: modalSlideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 3px solid var(--gold);
+        }
+
+        @keyframes modalSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(100px) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2.5rem;
+            color: var(--rose-deep);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            background: none;
+            border: none;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg) scale(1.2);
+        }
+
+        .modal-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--rose-primary);
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .modal-content p {
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        .modal-hearts {
+            font-size: 3rem;
+            margin: 30px 0;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            opacity: 0.7;
+        }
+
+        footer::before {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 1px;
+            background: var(--gold);
+            margin: 0 auto 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .letter-section {
+                padding: 50px 30px;
+            }
+
+            .rose-grid {
+                grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+                gap: 25px;
+                padding: 20px;
+            }
+
+            .hero {
+                padding: 40px 20px;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection color */
+        ::selection {
+            background: var(--rose-accent);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Falling petals container -->
+    <div id="petals"></div>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-ornament"></div>
+            <h1>Rose Day</h1>
+            <p class="hero-subtitle">For my dearest Deepu</p>
+            
+            <!-- Rose Display -->
+            <div class="rose-display">
+                <div class="rose-grid" id="roseGrid"></div>
+            </div>
+        </section>
+
+        <!-- Love Letter -->
+        <section class="letter-section">
+            <h2>My Beloved Deepu</h2>
+            <div class="letter-content">
+                <p>
+                    Like petals unfurling in the morning light, my love for you grows more beautiful with each passing moment. You are the poetry written in my heart, the melody that turns ordinary days into extraordinary memories.
+                </p>
+                <p>
+                    Every rose in this garden speaks a truth about you—your grace, your kindness, the way your laughter fills rooms with warmth. You've painted my world in colors I never knew existed, transforming the mundane into the magical simply by being yourself.
+                </p>
+                <p>
+                    On this Rose Day, I want you to know that you are treasured beyond measure. You are my confidante, my joy, my anchor in stormy seas. Your presence in my life is the greatest gift I could ever receive, and I promise to cherish it always.
+                </p>
+                <p>
+                    Thank you for choosing to walk this journey with me, for your patience, your understanding, and the countless ways you make me better. You are not just my girlfriend—you are my home, my heart, my everything.
+                </p>
+            </div>
+            <div class="signature-block">
+                <div class="signature-line">Forever and always,</div>
+                <div class="signature-name">Manas</div>
+            </div>
+        </section>
+
+        <!-- Surprise Button -->
+        <div class="surprise-section">
+            <button class="surprise-btn" onclick="openModal()">
+                <span>A Special Message 💕</span>
+            </button>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            Crafted with love by Manas<br>
+            Rose Day 2025
+        </footer>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-hearts">🌹 ❤️ 🌹</div>
+            <h3>You Are My Everything</h3>
+            <p>
+                In a world of billions, I found you.<br>
+                In a lifetime of moments, you became my favorite.<br>
+                In an ocean of love, you are my infinity.
+            </p>
+            <p style="font-family: 'Playfair Display', serif; font-weight: 700; color: var(--rose-primary); font-size: 2rem; margin-top: 30px;">
+                I Love You, Deepu ❤️
+            </p>
+            <div class="modal-hearts">🌹 ❤️ 🌹</div>
+        </div>
+    </div>
+
+    <script>
+        // Create falling petals
+        function createPetals() {
+            const petalsContainer = document.getElementById('petals');
+            const petalCount = 30;
+
+            for (let i = 0; i < petalCount; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.left = Math.random() * 100 + '%';
+                petal.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                petal.style.animationDelay = Math.random() * 5 + 's';
+                petalsContainer.appendChild(petal);
+            }
+        }
+
+        // Create elegant roses
+        function createRoses() {
+            const roseGrid = document.getElementById('roseGrid');
+            const numberOfRoses = 7;
+            const colors = [
+                { primary: '#D4145A', secondary: '#8B0036' },
+                { primary: '#FF6B9D', secondary: '#D4145A' },
+                { primary: '#C71585', secondary: '#8B0036' },
+                { primary: '#D4145A', secondary: '#8B0036' },
+                { primary: '#FF1493', secondary: '#C71585' },
+                { primary: '#FF6B9D', secondary: '#D4145A' },
+                { primary: '#D4145A', secondary: '#8B0036' }
+            ];
+
+            for (let i = 0; i < numberOfRoses; i++) {
+                const roseItem = document.createElement('div');
+                roseItem.className = 'rose-item';
+                roseItem.style.animationDelay = (i * 0.1) + 's';
+
+                const color = colors[i % colors.length];
+                
+                roseItem.innerHTML = `
+                    <svg class="rose-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Rose petals -->
+                        <ellipse cx="50" cy="40" rx="15" ry="20" fill="${color.primary}" opacity="0.9" transform="rotate(-20 50 40)"/>
+                        <ellipse cx="50" cy="40" rx="15" ry="20" fill="${color.primary}" opacity="0.85" transform="rotate(52 50 40)"/>
+                        <ellipse cx="50" cy="40" rx="15" ry="20" fill="${color.secondary}" opacity="0.9" transform="rotate(124 50 40)"/>
+                        <ellipse cx="50" cy="40" rx="15" ry="20" fill="${color.secondary}" opacity="0.85" transform="rotate(196 50 40)"/>
+                        <ellipse cx="50" cy="40" rx="15" ry="20" fill="${color.primary}" opacity="0.8" transform="rotate(268 50 40)"/>
+                        
+                        <!-- Center -->
+                        <circle cx="50" cy="40" r="8" fill="${color.secondary}"/>
+                        <circle cx="50" cy="40" r="4" fill="#FFE8F0"/>
+                        
+                        <!-- Stem -->
+                        <line x1="50" y1="50" x2="50" y2="85" stroke="#2F5233" stroke-width="2.5" stroke-linecap="round"/>
+                        
+                        <!-- Leaves -->
+                        <ellipse cx="45" cy="65" rx="8" ry="5" fill="#3D6E3F" transform="rotate(-30 45 65)"/>
+                        <ellipse cx="55" cy="72" rx="8" ry="5" fill="#3D6E3F" transform="rotate(30 55 72)"/>
+                    </svg>
+                `;
+
+                // Add click sparkle effect
+                roseItem.addEventListener('click', function() {
+                    this.style.transform = 'scale(1.3) rotate(360deg)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 600);
+                });
+
+                roseGrid.appendChild(roseItem);
+            }
+        }
+
+        // Modal functions
+        function openModal() {
+            document.getElementById('modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(event) {
+            if (!event || event.target.id === 'modal') {
+                document.getElementById('modal').classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Initialize
+        window.addEventListener('load', () => {
+            createPetals();
+            createRoses();
+        });
+
+        // Keyboard support for modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
